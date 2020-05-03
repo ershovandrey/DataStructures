@@ -15,15 +15,11 @@ module.exports = class StackLL {
   }
 
   pop() {
-    let value = null;
-    if (this.items.length > 0) {
-      value = this.items.head.value;
-      this.items.remove(0);
-    }
-    return value;
+    return this.items.pop();
   }
 
   print(message) {
     this.items.print(message);
+    return this;
   }
 }
