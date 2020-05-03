@@ -39,6 +39,10 @@ module.exports = class Stack {
     return value;
   }
 
+  isEmpty() {
+    return this.length === 0;
+  }
+
   toArray() {
     let output = [];
     let currNode = this.top;

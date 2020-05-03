@@ -16,6 +16,11 @@ module.exports = class StackArray {
     return this.items.length > 0 ? this.items.pop() : null;
   }
 
+  isEmpty() {
+    return this.items.length === 0;
+  }
+
+
   print(prefix) {
     var prefix = (prefix === undefined) ? "" : prefix + "\t";
     console.log(prefix + "[" + this.items.length + "] " + this.items.join(', '));

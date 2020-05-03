@@ -18,6 +18,11 @@ module.exports = class StackLL {
     return this.items.pop();
   }
 
+  isEmpty() {
+    return this.items.length === 0;
+  }
+
+
   print(message) {
     this.items.print(message);
     return this;
