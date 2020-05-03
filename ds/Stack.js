@@ -8,7 +8,6 @@ class StackNode {
 module.exports = class Stack {
   constructor() {
     this.top = null;
-    this.bottom = null;
     this.length = 0;
   }
 
@@ -18,12 +17,7 @@ module.exports = class Stack {
 
   push(value) {
     const newNode = new StackNode(value);
-    if (this.length === 0) {
-      this.bottom = newNode;
-    }
-    else {
-      newNode.next = this.top;
-    }
+    newNode.next = this.top;
     this.top = newNode;
     this.length++;
     return this;
