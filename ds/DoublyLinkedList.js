@@ -2,15 +2,24 @@ const DoublyLinkedListNode = require('./DoublyLinkedListNode');
 
 module.exports = class DoublyLinkedList {
   constructor(value) {
-    this.head = new DoublyLinkedListNode(value);
+    this.length = 0;
+    this.head = null;
+    if (value !== undefined) {
+      this.head = new DoublyLinkedListNode(value);
+      this.length++;
+    }
     this.tail = this.head;
-    this.length = 1;
   }
 
   append(value) {
     const newNode = new DoublyLinkedListNode(value);
-    newNode.prev = this.tail;
-    this.tail.next = newNode;
+    if (this.length === 0) {
+      this.head = newNode;
+    }
+    else {
+      newNode.prev = this.tail;
+      this.tail.next = newNode;
+    }
     this.tail = newNode;
     this.length++;
     return this;
@@ -18,7 +27,12 @@ module.exports = class DoublyLinkedList {
 
   prepend(value) {
     const newNode = new DoublyLinkedListNode(value);
-    newNode.next = this.head;
+    if (this.length === 0) {
+      this.tail = newNode;
+    }
+    else {
+      newNode.next = this.head;
+    }
     this.head = newNode;
     this.length++;
     return this;
@@ -107,20 +121,23 @@ module.exports = class DoublyLinkedList {
   }
 
   reverse() {
-    if (this.length === 1) {
+    if (this.length < 2) {
       return this;
     }
     let first = this.head;
     let second = first.next;
     this.tail = this.head;
+    this.tail.prev = second;
     while (second !== null) {
       let temp = second.next;
+      second.prev = second.next;
       second.next = first;
       first = second;
       second = temp;
     }
     this.head.next = null;
     this.head = first;
+    this.head.prev = null;
     return this;
   }
  
