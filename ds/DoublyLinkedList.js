@@ -152,7 +152,7 @@ module.exports = class DoublyLinkedList {
   }
 
   print(prefix) {
-    var prefix = prefix + "\t" || "";
+    var prefix = (prefix === undefined) ? "" : prefix + "\t";
     const output = this.toArray();
     console.log(prefix + "[" + this.length + "] " + output.join(' <-> '));
     return this;
