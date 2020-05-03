@@ -43,6 +43,10 @@ module.exports = class Queue {
     return (this.length > 0) ? this.first.value : null;
   }
 
+  isEmpty() {
+    return this.length === 0;
+  }
+
   toArray() {
     let output = [];
     let currNode = this.first;

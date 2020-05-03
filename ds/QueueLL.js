@@ -22,6 +22,10 @@ module.exports = class QueueLL {
     return (this.items.length > 0) ? this.items.head.value : null;
   }
 
+  isEmpty() {
+    return this.items.length === 0;
+  }
+
   print(message) {
     this.items.print(message);
     return this;
