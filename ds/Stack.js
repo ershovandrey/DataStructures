@@ -34,6 +34,7 @@ module.exports = class Stack {
     if (this.length > 0) {
       value = this.top.value;
       this.top = this.top.next;
+      this.length--;
     }
     return value;
   }
