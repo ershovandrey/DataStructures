@@ -140,6 +140,24 @@ module.exports = class DoublyLinkedList {
     this.head.prev = null;
     return this;
   }
+
+  shift() {
+    let value = null;
+    if (this.length > 0) {
+      value = this.head.value;
+      this.remove(0);
+    }
+    return value;
+  }
+
+  pop() {
+    let value = null;
+    if (this.length > 0) {
+      value = this.tail.value;
+      this.remove(this.length - 1);
+    }
+    return value;  
+  }
  
   toArray() {
     let output = [];
