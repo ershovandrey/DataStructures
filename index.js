@@ -202,61 +202,109 @@
 // myMinHeap.print("final");
 
 
-const BinaryHeap = require('./ds/BinaryHeap');
-const minHeap = new BinaryHeap(false);
-const maxHeap = new BinaryHeap(true);
-function runningMedian(a) {
-  const result = [];
+// const BinaryHeap = require('./ds/BinaryHeap');
+// const minHeap = new BinaryHeap(false);
+// const maxHeap = new BinaryHeap(true);
+// function runningMedian(a) {
+//   const result = [];
   
-  for (let i = 0; i< a.length; i++) {
-    if(i===0) {
-      minHeap.add(a[i]);
-    } else {
-      if (a[i] <= median()) {
-        maxHeap.add(a[i]);
-      } else {
-        minHeap.add(a[i]);
-      }
-    }
-    fixChaos();
-    let m = median();
-    result.push(format(m));
-    console.log(a[i]);
-    maxHeap.print("Max");
-    minHeap.print("Min");
-  }
-  return result;
+//   for (let i = 0; i< a.length; i++) {
+//     if(i===0) {
+//       minHeap.add(a[i]);
+//     } else {
+//       if (a[i] <= median()) {
+//         maxHeap.add(a[i]);
+//       } else {
+//         minHeap.add(a[i]);
+//       }
+//     }
+//     fixChaos();
+//     let m = median();
+//     result.push(format(m));
+//     console.log(a[i]);
+//     maxHeap.print("Max");
+//     minHeap.print("Min");
+//   }
+//   return result;
+// }
+
+// function fixChaos(){
+//   //if sizes of heaps differ by 2, then it's a chaos, since median must be the middle element
+//   if( Math.abs(maxHeap.size() - minHeap.size()) > 1) {
+//       //check which one is the culprit and take action by kicking out the root from culprit into victim
+//       if(maxHeap.size() > minHeap.size()){
+//           minHeap.add(maxHeap.extract());
+//       }
+//       else{ maxHeap.add(minHeap.extract());}
+//   }
+// }
+
+// function median() {
+//   if( maxHeap.size() === minHeap.size()) {
+//     return (maxHeap.peek() + minHeap.peek())/2 ;
+//   }
+//   else if (maxHeap.size() > minHeap.size())
+//   { 
+//     return maxHeap.peek();
+//   }
+//   else { 
+//     return minHeap.peek();
+//   }
+// }
+
+// function format(num) {
+//   return (Math.round(parseFloat(num) * 10)/10).toFixed(1);
+// }
+
+
+
+// let result = runningMedian([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+// console.log(result);
+
+
+// function isBalanced(s) {
+//   const stack = [];
+//   const opening = ['(', '[', '{'];
+//   if (s.length === 0) {
+//     return 'NO';
+//   }
+//   for (let i=0; i<s.length; i++) {
+//     if (opening.includes(s[i])) {
+//       stack.push(s[i]);
+//     }
+//     else {
+//       let bracket = stack.pop();
+//       if (bracket === undefined
+//         || (bracket === '(' && s[i] !== ')')
+//         || (bracket === '[' && s[i] !== ']')
+//         || (bracket === '{' && s[i] !== '}')
+//       ) {
+//         return 'NO';
+//       }
+//     }
+//   }
+//   return (stack.length > 0) ? 'NO' : 'YES';
+// }
+
+// console.log(isBalanced('{[()]}'));
+
+const BST = require('./ds/BinarySearchTree');
+const tree = new BST();
+tree.insert(9);
+tree.insert(4);
+tree.insert(6);
+tree.insert(20);
+tree.insert(170);
+tree.insert(15);
+tree.insert(1);
+
+console.log(JSON.stringify(traverse(tree.root)));
+
+function traverse(node) {
+  const tree = {vale: node.value};
+  tree.left = node.left === null ? null : traverse(node.left);
+  tree.right = node.right === null ? null : traverse(node.right);
+  return tree;
 }
 
-function fixChaos(){
-  //if sizes of heaps differ by 2, then it's a chaos, since median must be the middle element
-  if( Math.abs(maxHeap.size() - minHeap.size()) > 1) {
-      //check which one is the culprit and take action by kicking out the root from culprit into victim
-      if(maxHeap.size() > minHeap.size()){
-          minHeap.add(maxHeap.extract());
-      }
-      else{ maxHeap.add(minHeap.extract());}
-  }
-}
-
-function median() {
-  if( maxHeap.size() === minHeap.size()) {
-    return (maxHeap.peek() + minHeap.peek())/2 ;
-  }
-  else if (maxHeap.size() > minHeap.size())
-  { 
-    return maxHeap.peek();
-  }
-  else { 
-    return minHeap.peek();
-  }
-}
-
-function format(num) {
-  return (Math.round(parseFloat(num) * 10)/10).toFixed(1);
-}
-
-
-
-let result = runningMedian([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-console.log(result);
+console.log(tree.lookup(50));
