@@ -5,6 +5,10 @@ module.exports = class BinaryHeap {
     this.minType = !maxType;
   }
 
+  size() {
+    return this.data.length;
+  }
+
   _parent(index) {
     if (index <= 0) {
       return -1;
@@ -61,18 +65,34 @@ module.exports = class BinaryHeap {
       const rightChildIndex = this._rightChildIndex(index);
       const leftChild = this.data[leftChildIndex];
       const rightChild = this.data[rightChildIndex];
-      if (leftChild && 
-        ((this.maxType && value < leftChild) || (this.minType && value > leftChild))
-      ) {
-        this._swap(leftChildIndex, index);
-        this._sinkDown(leftChildIndex);
+      
+      if (this.minType) {
+        // Min Heap.
+        if ((!rightChild || leftChild < rightChild)
+          && (value > leftChild)
+        ) {
+          this._swap(leftChildIndex, index);
+          this._sinkDown(leftChildIndex);
+        }
+        else if (rightChild && (value > rightChild)) {
+          this._swap(rightChildIndex, index);
+          this._sinkDown(rightChildIndex);
+        }
       }
-      else if (rightChild && 
-        ((this.maxType && value < rightChild) || (this.minType && value > rightChild))
-      ) {
-        this._swap(rightChildIndex, index);
-        this._sinkDown(rightChildIndex);
+      else {
+        // Max Heap.
+        if ((!rightChild || leftChild > rightChild)
+          && (value < leftChild)
+        ) {
+          this._swap(leftChildIndex, index);
+          this._sinkDown(leftChildIndex);
+        }
+        else if (rightChild && (value < rightChild)) {
+          this._swap(rightChildIndex, index);
+          this._sinkDown(rightChildIndex);
+        }
       }
+      
       return;
     }
   }
