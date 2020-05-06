@@ -331,125 +331,180 @@
 
 
 // Find clusters excercise.
-function countIslandsDFS(grid, rows, cols) {
-  let count = 0;
-  const visited = [];
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < cols; j++) {
-      if (visited[i] === undefined) {
-        visited[i] = [];
+// function countIslandsDFS(grid, rows, cols) {
+//   let count = 0;
+//   const visited = [];
+//   for (let i = 0; i < rows; i++) {
+//     for (let j = 0; j < cols; j++) {
+//       if (visited[i] === undefined) {
+//         visited[i] = [];
+//       }
+//       if (grid[i][j] === 1 && visited[i][j] === undefined) {
+//         dfs(grid, i, j, visited);
+//         count++;
+//       }
+//     }
+//   }
+//   return count;
+// }
+
+// function dfs(grid, row, col, visited) {
+//   const rows = [-1, -1, -1, 0, 0, 1, 1, 1];
+//   const cols = [-1, 0, 1, -1, 1, -1 , 0, 1];
+//   if (visited[row] === undefined) {
+//     visited[row] = [];
+//   }
+//   visited[row][col] = 1;
+//   for (k = 0; k < 8; k++) {
+//     if (possibleCell(grid, row + rows[k], col + cols[k], visited)) {
+//       dfs(grid, row + rows[k], col + cols[k], visited);
+//     }
+//   }
+// }
+
+// function countIslandsDFSStack(grid, rows, cols) {
+//   let count = 0;
+//   const visited = [];
+//   for (let i = 0; i < rows; i++) {
+//     for (let j = 0; j < cols; j++) {
+//       if (visited[i] === undefined) {
+//         visited[i] = [];
+//       }
+//       if (grid[i][j] === 1 && visited[i][j] === undefined) {
+//         dfsStack(grid, i, j, visited);
+//         count++;
+//       }
+//     }
+//   }
+//   return count;
+// }
+
+// function dfsStack(grid, row, col, visited) {
+//   const rows = [-1, -1, -1, 0, 0, 1, 1, 1];
+//   const cols = [-1, 0, 1, -1, 1, -1 , 0, 1];
+//   const stack = [[row, col]];
+//   visited[row][col] = 1;
+//   while (stack.length) {
+//     const cell = stack.pop();
+//     for (k = 0; k < 8; k++) {
+//       const i = cell[0] + rows[k];
+//       const j = cell[1] + cols[k];
+//       if (possibleCell(grid, i, j, visited)) {
+//         visited[i][j] = 1;
+//         stack.push([i, j]);
+//       }
+//     }
+//   }
+// }
+
+// function countIslandsBFS(grid, rows, cols) {
+//   let count = 0;
+//   const visited = [];
+//   for (let i = 0; i < rows; i++) {
+//     for (let j = 0; j < cols; j++) {
+//       if (visited[i] === undefined) {
+//         visited[i] = [];
+//       }
+//       if (grid[i][j] === 1 && visited[i][j] === undefined) {
+//         bfs(grid, i, j, visited);
+//         count++;
+//       }
+//     }
+//   }
+//   return count;
+// }
+
+// function bfs(grid, row, col, visited) {
+//   const rows = [-1, -1, -1, 0, 0, 1, 1, 1];
+//   const cols = [-1, 0, 1, -1, 1, -1 , 0, 1];
+//   const queue = [[row, col]];
+//   visited[row][col] = 1;
+//   while (queue.length) {
+//     const cell = queue.shift();
+//     for (k = 0; k < 8; k++) {
+//       const i = cell[0] + rows[k];
+//       const j = cell[1] + cols[k];
+//       if (possibleCell(grid, i, j, visited)) {
+//         visited[i][j] = 1;
+//         queue.push([i, j]);
+//       }
+//     }
+//   }
+// }
+
+// function possibleCell(grid, row, col, visited) {
+//   if (visited[row] === undefined) {
+//     visited[row] = [];
+//   }
+//   return (row >= 0 && row < grid.length 
+//     && col >= 0 && col < grid[0].length
+//     && grid[row][col] === 1
+//     && visited[row][col] === undefined);
+// }
+
+// const matrix = [
+//   [1, 1, 0, 0],
+//   [0, 1, 0, 0],
+//   [0, 0, 0, 0],
+//   [1, 0, 1, 1],
+//   [1, 1, 1, 1]
+// ];
+
+// console.log(countIslandsDFS(matrix, 5, 4));
+// console.log(countIslandsDFSStack(matrix, 5, 4));
+// console.log(countIslandsBFS(matrix, 5, 4));
+
+// Logs sort excercise.
+function getSortedLogs(logs) {
+  logs.sort(function (a, b) {
+    const rec1 = a.split(" ", 2);
+    const rec2 = b.split(" ", 2);
+    const isDigit1 = Boolean(parseInt(rec1[1]) + 1);
+    const isDigit2 = Boolean(parseInt(rec2[1]) + 1);
+    if (!isDigit1 && !isDigit2) {
+      // If both letter-strings are equal - compare identifiers.
+      if (rec1[1] === rec2[1]) {
+        if (rec1[0] === rec2[0]) {
+          return 0;
+        }
+        else if (rec1[0] < rec2[0]) {
+          return -1;
+        }
+        else {
+          return 1;
+        }
       }
-      if (grid[i][j] === 1 && visited[i][j] === undefined) {
-        dfs(grid, i, j, visited);
-        count++;
+      else if (rec1[1] < rec2[1]) {
+        // First letter-string is less than second.
+        return -1;
+      }
+      else {
+        // First letter-string is greater than second.
+        return 1;
       }
     }
-  }
-  return count;
-}
-
-function dfs(grid, row, col, visited) {
-  const rows = [-1, -1, -1, 0, 0, 1, 1, 1];
-  const cols = [-1, 0, 1, -1, 1, -1 , 0, 1];
-  if (visited[row] === undefined) {
-    visited[row] = [];
-  }
-  visited[row][col] = 1;
-  for (k = 0; k < 8; k++) {
-    if (possibleCell(grid, row + rows[k], col + cols[k], visited)) {
-      dfs(grid, row + rows[k], col + cols[k], visited);
+    else if (isDigit1 && isDigit2) {
+      // Both are digit-strings - stay at original position.
+      return 0;
     }
-  }
-}
-
-function countIslandsDFSStack(grid, rows, cols) {
-  let count = 0;
-  const visited = [];
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < cols; j++) {
-      if (visited[i] === undefined) {
-        visited[i] = [];
-      }
-      if (grid[i][j] === 1 && visited[i][j] === undefined) {
-        dfsStack(grid, i, j, visited);
-        count++;
-      }
+    else if (isDigit1 && !isDigit2) {
+      // First digit-string is greater than second Letter-string.
+      return 1;
     }
-  }
-  return count;
-}
-
-function dfsStack(grid, row, col, visited) {
-  const rows = [-1, -1, -1, 0, 0, 1, 1, 1];
-  const cols = [-1, 0, 1, -1, 1, -1 , 0, 1];
-  const stack = [[row, col]];
-  visited[row][col] = 1;
-  while (stack.length) {
-    const cell = stack.pop();
-    for (k = 0; k < 8; k++) {
-      const i = cell[0] + rows[k];
-      const j = cell[1] + cols[k];
-      if (possibleCell(grid, i, j, visited)) {
-        visited[i][j] = 1;
-        stack.push([i, j]);
-      }
+    else {
+      // First Letter-string is less than second digit-string.
+      return -1;
     }
-  }
+  });
+  return logs;
 }
 
-function countIslandsBFS(grid, rows, cols) {
-  let count = 0;
-  const visited = [];
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < cols; j++) {
-      if (visited[i] === undefined) {
-        visited[i] = [];
-      }
-      if (grid[i][j] === 1 && visited[i][j] === undefined) {
-        bfs(grid, i, j, visited);
-        count++;
-      }
-    }
-  }
-  return count;
-}
-
-function bfs(grid, row, col, visited) {
-  const rows = [-1, -1, -1, 0, 0, 1, 1, 1];
-  const cols = [-1, 0, 1, -1, 1, -1 , 0, 1];
-  const queue = [[row, col]];
-  visited[row][col] = 1;
-  while (queue.length) {
-    const cell = queue.shift();
-    for (k = 0; k < 8; k++) {
-      const i = cell[0] + rows[k];
-      const j = cell[1] + cols[k];
-      if (possibleCell(grid, i, j, visited)) {
-        visited[i][j] = 1;
-        queue.push([i, j]);
-      }
-    }
-  }
-}
-
-function possibleCell(grid, row, col, visited) {
-  if (visited[row] === undefined) {
-    visited[row] = [];
-  }
-  return (row >= 0 && row < grid.length 
-    && col >= 0 && col < grid[0].length
-    && grid[row][col] === 1
-    && visited[row][col] === undefined);
-}
-
-const matrix = [
-  [1, 1, 0, 0],
-  [0, 1, 0, 0],
-  [0, 0, 0, 0],
-  [1, 0, 1, 1],
-  [1, 1, 1, 1]
+const logs = [
+  "dig1 0 1 5 1",
+  "let1 art can",
+  "dig2 3 6",
+  "let2 own kit dig",
+  "let3 art zero"
 ];
 
-console.log(countIslandsDFS(matrix, 5, 4));
-console.log(countIslandsDFSStack(matrix, 5, 4));
-console.log(countIslandsBFS(matrix, 5, 4));
+console.log(getSortedLogs(logs));
