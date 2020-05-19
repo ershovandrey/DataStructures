@@ -6,8 +6,6 @@ module.exports = function mergeSort(arr) {
   let middle = Math.floor(length / 2);
   const left = arr.slice(0, middle);
   const right = arr.slice(middle);
-  console.log(left.join(','), ' <=> ', right.join(','));
-
   return merge(mergeSort(left), mergeSort(right));
 }
 
