@@ -509,17 +509,38 @@
 
 // console.log(getSortedLogs(logs));
 
-const bubbleSort = require('./algo/sort/bubble');
-const selectionSort = require('./algo/sort/selection');
-const insertionSort = require('./algo/sort/insertion');
-const mergeSort = require('./algo/sort/merge');
-const quickSort = require('./algo/sort/quick');
+// const bubbleSort = require('./algo/sort/bubble');
+// const selectionSort = require('./algo/sort/selection');
+// const insertionSort = require('./algo/sort/insertion');
+// const mergeSort = require('./algo/sort/merge');
+// const quickSort = require('./algo/sort/quick');
 
-const input = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0, 3, 3, 3, 3, 3];
-console.log(input.join(','));
+// const input = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0, 3, 3, 3, 3, 3];
+// console.log(input.join(','));
 
-console.log(bubbleSort(input.slice(0)).join(','));
-console.log(selectionSort(input.slice(0)).join(','));
-console.log(insertionSort(input.slice(0)).join(','));
-console.log(mergeSort(input.slice(0)).join(','));
-console.log(quickSort(input.slice(0)).join(','));
+// console.log(bubbleSort(input.slice(0)).join(','));
+// console.log(selectionSort(input.slice(0)).join(','));
+// console.log(insertionSort(input.slice(0)).join(','));
+// console.log(mergeSort(input.slice(0)).join(','));
+// console.log(quickSort(input.slice(0)).join(','));
+
+const BST = require('./ds/BinarySearchTree');
+const tree = new BST();
+tree.insert(9);
+tree.insert(4);
+tree.insert(6);
+tree.insert(20);
+tree.insert(170);
+tree.insert(15);
+tree.insert(1);
+
+console.log("BFS         ", tree.bfs().join(','));
+console.log("BFS_R       ", tree.bfsRecursive().join(','));
+console.log("DFS_IN      ", tree.dfsInOrder().join(','));
+console.log("DFS_IN    ST", tree.dfsInOrderStack().join(','));
+console.log("DFS_PRE     ", tree.dfsPreOrder().join(','));
+console.log("DFS_PRE   ST", tree.dfsPreOrderStack().join(','));
+console.log("DFS_POST    ", tree.dfsPostOrder().join(','));
+console.log("DFS_POST 1ST", tree.dfsPostOrderOneStack().join(','));
+console.log("DFS_POST ST2", tree.dfsPostOrderOneStack2().join(','));
+console.log("DFS_POST 2ST", tree.dfsPostOrderTwoStacks().join(','));
