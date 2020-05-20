@@ -201,93 +201,6 @@
 // console.log("ext", myMinHeap.extract())
 // myMinHeap.print("final");
 
-
-// const BinaryHeap = require('./ds/BinaryHeap');
-// const minHeap = new BinaryHeap(false);
-// const maxHeap = new BinaryHeap(true);
-// function runningMedian(a) {
-//   const result = [];
-  
-//   for (let i = 0; i< a.length; i++) {
-//     if(i===0) {
-//       minHeap.add(a[i]);
-//     } else {
-//       if (a[i] <= median()) {
-//         maxHeap.add(a[i]);
-//       } else {
-//         minHeap.add(a[i]);
-//       }
-//     }
-//     fixChaos();
-//     let m = median();
-//     result.push(format(m));
-//     console.log(a[i]);
-//     maxHeap.print("Max");
-//     minHeap.print("Min");
-//   }
-//   return result;
-// }
-
-// function fixChaos(){
-//   //if sizes of heaps differ by 2, then it's a chaos, since median must be the middle element
-//   if( Math.abs(maxHeap.size() - minHeap.size()) > 1) {
-//       //check which one is the culprit and take action by kicking out the root from culprit into victim
-//       if(maxHeap.size() > minHeap.size()){
-//           minHeap.add(maxHeap.extract());
-//       }
-//       else{ maxHeap.add(minHeap.extract());}
-//   }
-// }
-
-// function median() {
-//   if( maxHeap.size() === minHeap.size()) {
-//     return (maxHeap.peek() + minHeap.peek())/2 ;
-//   }
-//   else if (maxHeap.size() > minHeap.size())
-//   { 
-//     return maxHeap.peek();
-//   }
-//   else { 
-//     return minHeap.peek();
-//   }
-// }
-
-// function format(num) {
-//   return (Math.round(parseFloat(num) * 10)/10).toFixed(1);
-// }
-
-
-
-// let result = runningMedian([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-// console.log(result);
-
-
-// function isBalanced(s) {
-//   const stack = [];
-//   const opening = ['(', '[', '{'];
-//   if (s.length === 0) {
-//     return 'NO';
-//   }
-//   for (let i=0; i<s.length; i++) {
-//     if (opening.includes(s[i])) {
-//       stack.push(s[i]);
-//     }
-//     else {
-//       let bracket = stack.pop();
-//       if (bracket === undefined
-//         || (bracket === '(' && s[i] !== ')')
-//         || (bracket === '[' && s[i] !== ']')
-//         || (bracket === '{' && s[i] !== '}')
-//       ) {
-//         return 'NO';
-//       }
-//     }
-//   }
-//   return (stack.length > 0) ? 'NO' : 'YES';
-// }
-
-// console.log(isBalanced('{[()]}'));
-
 // const BST = require('./ds/BinarySearchTree');
 // const tree = new BST();
 // tree.insert(9);
@@ -329,186 +242,6 @@
 // console.log(myGraph.adjacentList);
 // myGraph.showConnections();
 
-
-// Find clusters excercise.
-// function countIslandsDFS(grid, rows, cols) {
-//   let count = 0;
-//   const visited = [];
-//   for (let i = 0; i < rows; i++) {
-//     for (let j = 0; j < cols; j++) {
-//       if (visited[i] === undefined) {
-//         visited[i] = [];
-//       }
-//       if (grid[i][j] === 1 && visited[i][j] === undefined) {
-//         dfs(grid, i, j, visited);
-//         count++;
-//       }
-//     }
-//   }
-//   return count;
-// }
-
-// function dfs(grid, row, col, visited) {
-//   const rows = [-1, -1, -1, 0, 0, 1, 1, 1];
-//   const cols = [-1, 0, 1, -1, 1, -1 , 0, 1];
-//   if (visited[row] === undefined) {
-//     visited[row] = [];
-//   }
-//   visited[row][col] = 1;
-//   for (k = 0; k < 8; k++) {
-//     if (possibleCell(grid, row + rows[k], col + cols[k], visited)) {
-//       dfs(grid, row + rows[k], col + cols[k], visited);
-//     }
-//   }
-// }
-
-// function countIslandsDFSStack(grid, rows, cols) {
-//   let count = 0;
-//   const visited = [];
-//   for (let i = 0; i < rows; i++) {
-//     for (let j = 0; j < cols; j++) {
-//       if (visited[i] === undefined) {
-//         visited[i] = [];
-//       }
-//       if (grid[i][j] === 1 && visited[i][j] === undefined) {
-//         dfsStack(grid, i, j, visited);
-//         count++;
-//       }
-//     }
-//   }
-//   return count;
-// }
-
-// function dfsStack(grid, row, col, visited) {
-//   const rows = [-1, -1, -1, 0, 0, 1, 1, 1];
-//   const cols = [-1, 0, 1, -1, 1, -1 , 0, 1];
-//   const stack = [[row, col]];
-//   visited[row][col] = 1;
-//   while (stack.length) {
-//     const cell = stack.pop();
-//     for (k = 0; k < 8; k++) {
-//       const i = cell[0] + rows[k];
-//       const j = cell[1] + cols[k];
-//       if (possibleCell(grid, i, j, visited)) {
-//         visited[i][j] = 1;
-//         stack.push([i, j]);
-//       }
-//     }
-//   }
-// }
-
-// function countIslandsBFS(grid, rows, cols) {
-//   let count = 0;
-//   const visited = [];
-//   for (let i = 0; i < rows; i++) {
-//     for (let j = 0; j < cols; j++) {
-//       if (visited[i] === undefined) {
-//         visited[i] = [];
-//       }
-//       if (grid[i][j] === 1 && visited[i][j] === undefined) {
-//         bfs(grid, i, j, visited);
-//         count++;
-//       }
-//     }
-//   }
-//   return count;
-// }
-
-// function bfs(grid, row, col, visited) {
-//   const rows = [-1, -1, -1, 0, 0, 1, 1, 1];
-//   const cols = [-1, 0, 1, -1, 1, -1 , 0, 1];
-//   const queue = [[row, col]];
-//   visited[row][col] = 1;
-//   while (queue.length) {
-//     const cell = queue.shift();
-//     for (k = 0; k < 8; k++) {
-//       const i = cell[0] + rows[k];
-//       const j = cell[1] + cols[k];
-//       if (possibleCell(grid, i, j, visited)) {
-//         visited[i][j] = 1;
-//         queue.push([i, j]);
-//       }
-//     }
-//   }
-// }
-
-// function possibleCell(grid, row, col, visited) {
-//   if (visited[row] === undefined) {
-//     visited[row] = [];
-//   }
-//   return (row >= 0 && row < grid.length 
-//     && col >= 0 && col < grid[0].length
-//     && grid[row][col] === 1
-//     && visited[row][col] === undefined);
-// }
-
-// const matrix = [
-//   [1, 1, 0, 0],
-//   [0, 1, 0, 0],
-//   [0, 0, 0, 0],
-//   [1, 0, 1, 1],
-//   [1, 1, 1, 1]
-// ];
-
-// console.log(countIslandsDFS(matrix, 5, 4));
-// console.log(countIslandsDFSStack(matrix, 5, 4));
-// console.log(countIslandsBFS(matrix, 5, 4));
-
-// Logs sort excercise.
-// function getSortedLogs(logs) {
-//   logs.sort(function (a, b) {
-//     const rec1 = a.split(" ", 2);
-//     const rec2 = b.split(" ", 2);
-//     const isDigit1 = Boolean(parseInt(rec1[1]) + 1);
-//     const isDigit2 = Boolean(parseInt(rec2[1]) + 1);
-//     if (!isDigit1 && !isDigit2) {
-//       // If both letter-strings are equal - compare identifiers.
-//       if (rec1[1] === rec2[1]) {
-//         if (rec1[0] === rec2[0]) {
-//           return 0;
-//         }
-//         else if (rec1[0] < rec2[0]) {
-//           return -1;
-//         }
-//         else {
-//           return 1;
-//         }
-//       }
-//       else if (rec1[1] < rec2[1]) {
-//         // First letter-string is less than second.
-//         return -1;
-//       }
-//       else {
-//         // First letter-string is greater than second.
-//         return 1;
-//       }
-//     }
-//     else if (isDigit1 && isDigit2) {
-//       // Both are digit-strings - stay at original position.
-//       return 0;
-//     }
-//     else if (isDigit1 && !isDigit2) {
-//       // First digit-string is greater than second Letter-string.
-//       return 1;
-//     }
-//     else {
-//       // First Letter-string is less than second digit-string.
-//       return -1;
-//     }
-//   });
-//   return logs;
-// }
-
-// const logs = [
-//   "dig1 0 1 5 1",
-//   "let1 art can",
-//   "dig2 3 6",
-//   "let2 own kit dig",
-//   "let3 art zero"
-// ];
-
-// console.log(getSortedLogs(logs));
-
 // const bubbleSort = require('./algo/sort/bubble');
 // const selectionSort = require('./algo/sort/selection');
 // const insertionSort = require('./algo/sort/insertion');
@@ -524,23 +257,23 @@
 // console.log(mergeSort(input.slice(0)).join(','));
 // console.log(quickSort(input.slice(0)).join(','));
 
-const BST = require('./ds/BinarySearchTree');
-const tree = new BST();
-tree.insert(9);
-tree.insert(4);
-tree.insert(6);
-tree.insert(20);
-tree.insert(170);
-tree.insert(15);
-tree.insert(1);
+// const BST = require('./ds/BinarySearchTree');
+// const tree = new BST();
+// tree.insert(9);
+// tree.insert(4);
+// tree.insert(6);
+// tree.insert(20);
+// tree.insert(170);
+// tree.insert(15);
+// tree.insert(1);
 
-console.log("BFS         ", tree.bfs().join(','));
-console.log("BFS_R       ", tree.bfsRecursive().join(','));
-console.log("DFS_IN      ", tree.dfsInOrder().join(','));
-console.log("DFS_IN    ST", tree.dfsInOrderStack().join(','));
-console.log("DFS_PRE     ", tree.dfsPreOrder().join(','));
-console.log("DFS_PRE   ST", tree.dfsPreOrderStack().join(','));
-console.log("DFS_POST    ", tree.dfsPostOrder().join(','));
-console.log("DFS_POST 1ST", tree.dfsPostOrderOneStack().join(','));
-console.log("DFS_POST ST2", tree.dfsPostOrderOneStack2().join(','));
-console.log("DFS_POST 2ST", tree.dfsPostOrderTwoStacks().join(','));
+// console.log("BFS         ", tree.bfs().join(','));
+// console.log("BFS_R       ", tree.bfsRecursive().join(','));
+// console.log("DFS_IN      ", tree.dfsInOrder().join(','));
+// console.log("DFS_IN    ST", tree.dfsInOrderStack().join(','));
+// console.log("DFS_PRE     ", tree.dfsPreOrder().join(','));
+// console.log("DFS_PRE   ST", tree.dfsPreOrderStack().join(','));
+// console.log("DFS_POST    ", tree.dfsPostOrder().join(','));
+// console.log("DFS_POST 1ST", tree.dfsPostOrderOneStack().join(','));
+// console.log("DFS_POST ST2", tree.dfsPostOrderOneStack2().join(','));
+// console.log("DFS_POST 2ST", tree.dfsPostOrderTwoStacks().join(','));
